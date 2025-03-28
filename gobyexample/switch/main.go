@@ -24,4 +24,32 @@ func main() {
 	default:
 		fmt.Println("i is negative")
 	}
+
+	var a SomeInt
+	a = A("hello")
+	switch a.(type) {
+	case A:
+		fmt.Println("it's type A")
+		a.Do()
+	case B:
+		fmt.Println("it's type B")
+		a.Do()
+	default:
+		fmt.Println("unkown type")
+	}
+}
+
+type A string
+type B string
+
+type SomeInt interface {
+	Do()
+}
+
+func (A) Do() {
+	fmt.Println("I'm doing as A")
+}
+
+func (B) Do() {
+	fmt.Println("I'm doing as B")
 }
